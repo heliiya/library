@@ -55,7 +55,7 @@ public class BookController {
         ModelAndView mav = new ModelAndView();
         AlertResult alertResult = bookService.issueBook(callno);
         mav.addObject(alertResult.getAlertEnum().getName(), alertResult.getAlertTxt());
-        mav.setViewName("/issueBook");
+        mav.setViewName("issueBook");
         return mav;
     }
 
