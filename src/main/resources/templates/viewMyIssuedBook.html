@@ -32,13 +32,13 @@
             <th>Return Book</th>
         </tr>
         </thead>
-        <tbody th:each="issueBook : ${issueBooks}">
+        <tbody th:each="issuedBook : ${issuedBooks}">
         <tr>
-            <td th:text="${issueBook.callno}">...</td>
-            <td th:text="${issueBook.issuedDate}">...</td>
-            <td th:text="${issueBook.returnStatus}">...</td>
+            <td th:text="${issuedBook.callno}">...</td>
+            <td th:text="${issuedBook.issuedDate}">...</td>
+            <td th:text="${issuedBook.returnStatus}">...</td>
             <td>
-                <a th:if="${!issueBook.returnStatus}" th:href="@{/returnBook(callno=${issueBook.callno})}">Return Book</a>
+                <a th:if="${!issuedBook.returnStatus}" th:href="@{/returnBook(callno=${issuedBook.callno})}">Return Book</a>
             </td>
 
         </tr>

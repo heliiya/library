@@ -41,11 +41,11 @@
             <td th:text="${librarian.mobile}">...</td>
             <td colspan="3">
                 <table class="table" style="border-top: white solid;">
-                    <tbody th:each="issueBook : ${librarian.issuedBooks}">
+                    <tbody th:each="issuedBook : ${librarian.issuedBooks}">
                     <tr>
-                        <td th:text="${issueBook.callno}">...</td>
-                        <td th:text="${issueBook.issuedDate}">...</td>
-                        <td th:text="${issueBook.returnStatus}">...</td>
+                        <td th:text="${issuedBook.callno}">...</td>
+                        <td th:text="${issuedBook.issuedDate}">...</td>
+                        <td th:text="${issuedBook.returnStatus}">...</td>
                     </tr>
                     </tbody>
                 </table>

@@ -11,7 +11,7 @@ public class Librarian {
     private String email;
     private String password;
     private String mobile;
-    private List<IssueBook> issuedBooks;
+    private List<IssuedBook> issuedBooks;
 
     public Librarian() {
     }
@@ -65,11 +65,11 @@ public class Librarian {
         this.mobile = mobile;
     }
 
-    public List<IssueBook> getIssuedBooks() {
+    public List<IssuedBook> getIssuedBooks() {
         return issuedBooks;
     }
 
-    public void setIssuedBooks(List<IssueBook> issuedBooks) {
+    public void setIssuedBooks(List<IssuedBook> issuedBooks) {
         this.issuedBooks = issuedBooks;
     }
 

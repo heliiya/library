@@ -3,7 +3,7 @@ package ir.mapsa.eLibrary;
 import com.mongodb.client.*;
 import ir.mapsa.eLibrary.model.Admin;
 import ir.mapsa.eLibrary.model.Book;
-import ir.mapsa.eLibrary.model.IssueBook;
+import ir.mapsa.eLibrary.model.IssuedBook;
 import ir.mapsa.eLibrary.model.Librarian;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -111,7 +111,6 @@ public class DatabaseManager {
         librarianCollection.deleteOne(new Document("_id", id));
     }
 
-
     public Book hasThisBook(Book book){
         Document doc = bookCollection.find(and(
                 eq("callno", book.getCallno()),
@@ -169,20 +168,20 @@ public class DatabaseManager {
         if(documents == null){
             documents = new ArrayList<>();
         }
-        IssueBook issuedBook = new IssueBook(callno);
+        IssuedBook issuedBook = new IssuedBook(callno);
         documents.add(issuedBook.generateDocument());
         librarianCollection.updateOne(eq("_id", currentUserId),
                 new Document("$set", new Document("issuedBooks", documents)));
     }
 
-    public ArrayList<IssueBook> getMyIssuedBooks(){
-        ArrayList<IssueBook> myIssuedBooks = new ArrayList<>();
+    public ArrayList<IssuedBook> getMyIssuedBooks(){
+        ArrayList<IssuedBook> myIssuedBooks = new ArrayList<>();
 
         Document librarianDoc = librarianCollection.find(eq("_id", currentUserId)).first();
         List<Document> issuedBookDocs = librarianDoc.get("issuedBooks", List.class);
         if(issuedBookDocs != null && !issuedBookDocs.isEmpty()){
             for (Document issuedBookDoc : issuedBookDocs) {
-                myIssuedBooks.add(new IssueBook(issuedBookDoc));
+                myIssuedBooks.add(new IssuedBook(issuedBookDoc));
             }
         }
         return myIssuedBooks;

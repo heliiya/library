@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class BookController {
 
     @Autowired
-    BookService bookService;
+    private BookService bookService;
 
     @GetMapping("/addBook")
     public String showAddBookForm(Book book) {
@@ -61,7 +61,7 @@ public class BookController {
 
     @GetMapping("/viewMyIssuedBook")
     public String showMyIssuedBookTable(Model model) {
-        model.addAttribute("issueBooks", bookService.getMyIssuedBooks());
+        model.addAttribute("issuedBooks", bookService.getMyIssuedBooks());
         return "viewMyIssuedBook";
     }
 

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
     @Autowired
-    HomeService homeService;
+    private HomeService homeService;
 
     @GetMapping("/")
     public String showLoginPage(){

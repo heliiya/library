@@ -1,6 +1,7 @@
 package ir.mapsa.eLibrary.helper;
 
 public class AlertResult {
+
     private AlertEnum alertEnum;
     private String alertTxt;
 
@@ -16,4 +17,5 @@ public class AlertResult {
     public String getAlertTxt() {
         return alertTxt;
     }
+
 }

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LibrarianController {
 
     @Autowired
-    LibrarianService librarianService;
+    private LibrarianService librarianService;
 
     @GetMapping("/addLibrarian")
     public String showAddLibrarianForm(Librarian librarian) {

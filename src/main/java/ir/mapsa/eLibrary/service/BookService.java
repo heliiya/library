@@ -4,7 +4,7 @@ import ir.mapsa.eLibrary.DatabaseManager;
 import ir.mapsa.eLibrary.helper.AlertEnum;
 import ir.mapsa.eLibrary.helper.AlertResult;
 import ir.mapsa.eLibrary.model.Book;
-import ir.mapsa.eLibrary.model.IssueBook;
+import ir.mapsa.eLibrary.model.IssuedBook;
 import ir.mapsa.eLibrary.model.Librarian;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 @Service
 public class BookService {
+
     public AlertResult addBook(Book book) {
         String errorTxt = book.getValidationErrorTxt();
         if (errorTxt != null) {
@@ -46,7 +47,7 @@ public class BookService {
     }
 
     public AlertResult issueBook(String callno) {
-        String errorTxt = IssueBook.getValidationErrorTxt(callno);
+        String errorTxt = IssuedBook.getValidationErrorTxt(callno);
         if(errorTxt != null){
             return new AlertResult(AlertEnum.ERROR, errorTxt);
         }
@@ -62,8 +63,8 @@ public class BookService {
             return new AlertResult(AlertEnum.ERROR, "The quantity of this book was finished");
         }
 
-        ArrayList<IssueBook> myIssuedBooks = databaseManager.getMyIssuedBooks();
-        IssueBook issuedBook = myIssuedBooks.stream().filter(
+        ArrayList<IssuedBook> myIssuedBooks = databaseManager.getMyIssuedBooks();
+        IssuedBook issuedBook = myIssuedBooks.stream().filter(
                 value -> value.getCallno().equals(callno) && !value.isReturnStatus()).findFirst().orElse(null);
         if(issuedBook != null){
             return new AlertResult(AlertEnum.ERROR, "This book has already been issued");
@@ -78,7 +79,7 @@ public class BookService {
         return new AlertResult(AlertEnum.SUCCESS, "This book issued");
     }
 
-    public ArrayList<IssueBook> getMyIssuedBooks(){
+    public ArrayList<IssuedBook> getMyIssuedBooks(){
         return DatabaseManager.getInstance().getMyIssuedBooks();
     }
 
