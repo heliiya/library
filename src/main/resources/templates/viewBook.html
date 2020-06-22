@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>View Book</title>
+    <link  rel="stylesheet" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <label class="navbar-brand">eLibrary</label>
+        </div>
+        <ul th:if="${isAdmin}" class="nav navbar-nav">
+            <li><a href="/adminHome">Home</a></li>
+            <li><a href="/addLibrarian">Add Librarian</a></li>
+            <li><a href="/viewLibrarian">View Librarian</a></li>
+            <li><a href="/addBook">Add Book</a></li>
+            <li class="active"><a href="/viewBook">View Book</a></li>
+            <li><a href="/viewIssuedBook">View Issued Book</a></li>
+            <li><a href="/">Logout</a></li>
+        </ul>
+        <ul th:if="${!isAdmin}" class="nav navbar-nav">
+            <li><a href="/librarianHome">Home</a></li>
+            <li class="active"><a href="/viewBook">View Book</a></li>
+            <li><a href="/issueBook">Issue Book</a></li>
+            <li><a href="/viewMyIssuedBook">View My Issued Book</a></li>
+            <li><a href="/">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+         <tr>
+            <th>Callno</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Quantity</th>
+            <th>IssuedNo</th>
+            <th th:if="${isAdmin}">Delete</th>
+        </tr>
+        </thead>
+        <tbody th:each="book : ${books}">
+        <tr>
+            <td th:text="${book.callno}">...</td>
+            <td th:text="${book.name}">...</td>
+            <td th:text="${book.author}">...</td>
+            <td th:text="${book.publisher}">...</td>
+            <td th:text="${book.quantity}">...</td>
+            <td th:text="${book.issuedNo}">...</td>
+            <td th:if="${isAdmin}"><a th:href="@{/deleteBook(id=${book.id})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

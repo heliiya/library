@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Edit Librarian</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link  rel="stylesheet" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <label class="navbar-brand">eLibrary</label>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/adminHome">Home</a></li>
+            <li><a href="/addLibrarian">Add Librarian</a></li>
+            <li><a href="/viewLibrarian">View Librarian</a></li>
+            <li><a href="/addBook">Add Book</a></li>
+            <li><a href="/viewBook">View Book</a></li>
+            <li><a href="/viewIssuedBook">View Issued Book</a></li>
+            <li><a href="/">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <form action="#" th:action="@{/editLibrarian}" th:object="${librarian}" method="post">
+        <div><h3>Edit Librarian</h3></div>
+        <div class="form-group">
+            <label for="id">Id:</label>
+            <input type="text" class="form-control" id="id" th:field="*{id}" th:value="${librarian.id}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter name" th:field="*{name}" th:value="${librarian.name}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" th:field="*{email}" th:value="${librarian.email}">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" th:field="*{password}" th:value="${librarian.password}">
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile Number:</label>
+            <input type="number" class="form-control" id="mobile" placeholder="Enter mobile number" th:field="*{mobile}" th:value="${librarian.mobile}">
+        </div>
+        <button type="submit" class="btn btn-info">Update</button>
+    </form>
+    <br>
+    <div th:if="${error!=null}" class="alert alert-danger">
+        <strong>Error!</strong><p th:text="${error}"></p>
+    </div>
+    <div th:if="${success!=null}" class="alert alert-success">
+        <strong>Success!</strong><p th:text="${success}"></p>
+    </div>
+
+</div>
+
+</body>
+</html>

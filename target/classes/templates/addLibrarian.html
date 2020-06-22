@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Add Librarian</title>
+    <link  rel="stylesheet" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <label class="navbar-brand">eLibrary</label>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/adminHome">Home</a></li>
+            <li class="active"><a href="/addLibrarian">Add Librarian</a></li>
+            <li><a href="/viewLibrarian">View Librarian</a></li>
+            <li><a href="/addBook">Add Book</a></li>
+            <li><a href="/viewBook">View Book</a></li>
+            <li><a href="/viewIssuedBook">View Issued Book</a></li>
+            <li><a href="/">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <form action="#" th:action="@{/addLibrarian}" th:object="${librarian}" method="post">
+        <div><h3>Add Librarian</h3></div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter name" th:field="*{name}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" th:field="*{email}">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" th:field="*{password}">
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile Number:</label>
+            <input type="number" class="form-control" id="mobile" placeholder="Enter mobile number" th:field="*{mobile}">
+        </div>
+        <button type="submit" class="btn btn-info">Submit</button>
+    </form>
+    <br>
+    <div th:if="${error!=null}" class="alert alert-danger">
+        <strong>Error!</strong><p th:text="${error}"></p>
+    </div>
+    <div th:if="${success!=null}" class="alert alert-success">
+        <strong>Success!</strong><p th:text="${success}"></p>
+    </div>
+</div>
+</body>
+</html>
